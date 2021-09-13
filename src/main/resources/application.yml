@@ -1,0 +1,26 @@
+# 服务端口配置
+server:
+  port: 8889
+
+spring:
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/content_center?serverTimezone=GMT
+    hikari:
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # nacos服务注册地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        cluster-name: BJ
+  application:
+    name: content-center
+
+# ribbon 用户中心实例自定义的负载均衡配置
+user-center:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.itmuch.contentcenter.configuration.NacosSameClusterWeightedRule
